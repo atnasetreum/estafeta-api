@@ -6,6 +6,7 @@ use App\Label;
 use App\State;
 use App\Estafeta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class LabelController extends Controller
 {
@@ -100,8 +101,8 @@ class LabelController extends Controller
              $this->validate($request, [ 'celular_destinatario'            => 'regex:/^[\pL\s\-]+$/u|between:1,20']);
         }
 
-        $respuesta = Estafeta::crear_guia($request);
-
+        $nombre_del_PDF = Estafeta::crear_guia($request);
+        session()->flash('archivo_pdf', $nombre_del_PDF);
         return view('label.index');
     }
 

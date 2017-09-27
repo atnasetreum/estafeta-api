@@ -7,6 +7,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Información API </div>
 
+                @if (session()->has('archivo_pdf'))
+                    <div class="alert alert-success">
+                        <a style="color:white;" href="guiasPDF/{{ session('archivo_pdf') }}" title="Descargar" target="_black">
+                            <h3>Descargar Guía PDF (Click)</h3>
+                        </a>
+                    </div>
+                @endif
+
                 <div class="panel-body">
                     <p class="text-justify">Estafeta Mexicana cuenta con una filosofía de mejora continua. Como parte de dicha filosofía,
                     se busca proporcionar las herramientas adecuadas para facilitar la logística de envíos de los Clientes
@@ -21,4 +29,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

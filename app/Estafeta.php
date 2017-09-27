@@ -9,7 +9,7 @@ class Estafeta extends Model
 
     public static function crear_guia($request)
     {
-        $i = (Object) $request->all();
+        $request = (Object) $request->all();
         /*<DRAlternativeInfo xsi:type="dto:DRAlternativeInfo">
               <address1 xsi:type="xsd:string">'.$i->Alter_address1.'</address1>
               <address2 xsi:type="xsd:string">'.$i->Alter_address2.'</address2>
@@ -24,45 +24,20 @@ class Estafeta extends Model
               <valid xsi:type="xsd:boolean">'.$i->Alter_valid.'</valid>
               <zipCode xsi:type="xsd:string">'.$i->Alter_zipCode.'</zipCode>
            </DRAlternativeInfo>*/
-/*contenido_del_envio
-forma_de_entrega
-numero_de_etiquetas
-numero_de_oficina
-codigo_postal_destino
-tipo_de_envio
-tipo_de_servicio
-peso_del_envio
-tipo_de_papel
-informacion_adicional_del_envio
-descripcion_del_contenido
-centro_de_costos
-pais_de_envio
-referencia
-direccion_destinatario
-colonia_destinatario
-ciudad_destinatario
-codigo_postal_destinatario
-estado_destinatario
-contacto_destinatario
-razon_social_destinatario
-numero_cliente_destinatario
-direccion2_destinatario
-telefono_destinatario
-celular_destinatario*/
 
-
+//dd();
 $i = (Object) [
 
-'content'                  => 'JOYAS', /* Contenido del envío Char(1 a 25) (SI) */
-'deliveryToEstafetaOffice' => 'false',/* Si es “True”, el envío es “Entrega Ocurre” es decir se entregará en una oficina Estafeta en lugar del domicilio del destinatario (bolean) (SI)*/
-'numberOfLabels'           => 1, /* Número de etiquetas que se desean imprimir con el tipo de servicio min:1 mx:70 (SI)*/
-'officeNum'                => '130', /* Número de Oficina Estafeta string (000 a 999) (SI)*/
-'originZipCodeForRouting'  => '02300', /* Código postal del domicilio destino del envío Char(5) Decimal(5) (SI)*/
-'parcelTypeId'             => 1, /* Tipo de envío int(1 - sobre, 4 - paquete) (SI)*/
-'serviceTypeId'            => '70', /* Identificador de tipo de Servicio Estafeta para la impresión de guías Char(2) (SI)*//*Consultar lista de servicios con su asesor de ventas (SI)*/
+'content'                  => $request->contenido_del_envio, /* Contenido del envío Char(1 a 25) (SI) */
+'deliveryToEstafetaOffice' => $request->forma_de_entrega,/* Si es “True”, el envío es “Entrega Ocurre” es decir se entregará en una oficina Estafeta en lugar del domicilio del destinatario (bolean) (SI)*/
+'numberOfLabels'           => $request->numero_de_etiquetas, /* Número de etiquetas que se desean imprimir con el tipo de servicio min:1 mx:70 (SI)*/
+'officeNum'                => $request->numero_de_oficina, /* Número de Oficina Estafeta string (000 a 999) (SI)*/
+'originZipCodeForRouting'  => $request->codigo_postal_destino, /* Código postal del domicilio destino del envío Char(5) Decimal(5) (SI)*/
+'parcelTypeId'             => $request->tipo_de_envio, /* Tipo de envío int(1 - sobre, 4 - paquete) (SI)*/
+'serviceTypeId'            => $request->tipo_de_servicio, /* Identificador de tipo de Servicio Estafeta para la impresión de guías Char(2) (SI)*//*Consultar lista de servicios con su asesor de ventas (SI)*/
 'valid'                    => 'true', /* (SI)*/
-'weight'                   => '50', /* Peso del envío Float (0.5 a 99.00) (SI)*/
-'paperType'                => 1,
+'weight'                   => $request->peso_del_envio, /* Peso del envío Float (0.5 a 99.00) (SI)*/
+'paperType'                => $request->tipo_de_papel,
 /*Tipo de papel para impresión de la guía.
     1 - Papel Bond Tamaño Carta
     En esta modalidad la cara de la hoja es
@@ -82,9 +57,26 @@ $i = (Object) [
     3 - Plantilla Tamaño Oficio de 4 Etiquetas
     En esta modalidad la plantilla está dividida
     en 4 cuadrantes donde cada uno es una*/
+/*
+
+$request->descripcion_del_contenido
+$request->centro_de_costos
+$request->pais_de_envio
+$request->referencia
 
 
-'aditionalInfo'        => 'OPERACION5', /* Información adicional sobre el envío Char(1 a 25) (NO) */
+$request->telefono_destinatario
+$request->celular_destinatario
+*/
+/*($request->descripcion_del_contenido ?? '.')
+($request->centro_de_costos ?? '.')
+($request->pais_de_envio ?? '.')
+($request->referencia ?? '.')
+($request->informacion_adicional_del_envio ?? '.')
+($request->informacion_adicional_del_envio ?? '.')*/
+
+
+'aditionalInfo'        => ($request->informacion_adicional_del_envio ?? '.'), /* Información adicional sobre el envío Char(1 a 25) (NO) */
 'contentDescription'   => 'ORO',        /* Descripcion del contenido del envío Char(100) (NO) */
 'costCenter'           => '12345',      /* Centro de Costos del cliente al que pertenece el envío Char(1 a 10) (NO) */
 'destinationCountryId' => 'MX', /* País del envío, solo se requiere definir en caso de que el envío sea hacia el extranjero (EU -Estados Unidos) (NO)*/
@@ -94,14 +86,14 @@ $i = (Object) [
 
 
 //  Persona a quien va dirigido el envio
-'Cliente_address1'       => 'MAIZALES', /* Línea 1 de Dirección Char(1 a 30) (SI)*/
-'Cliente_neighborhood'   => 'CENTRO', /* Colonia Char(1 a 50) (SI)*/
-'Cliente_city'           => 'COYOACAN', /* Ciudad Char(1 a 50) (SI)*/
-'Cliente_zipCode'        => '02130', /*Código Postal Char(5) Decimal(5) (SI)*/
-'Cliente_state'          => 'ESTADO  DE MEXICO', /* Estado Char(1 a 50) (SI)*/
-'Cliente_contactName'    => 'JAVIER' /* Nombre de la persona de Contacto Char(1 a 30) (SI)*/,
-'Cliente_corporateName'  => 'CHICOLOAPAN SA DE CV', /* Razón social Char(1 a 50) (SI)*/
-'Cliente_customerNumber' => '0000000', /* Número de Cliente Estafeta. Puede tratarse del Número de Cliente origen o destino Char(7) (SI)*/
+'Cliente_address1'       => $request->direccion_destinatario, /* Línea 1 de Dirección Char(1 a 30) (SI)*/
+'Cliente_neighborhood'   => $request->colonia_destinatario, /* Colonia Char(1 a 50) (SI)*/
+'Cliente_city'           => $request->ciudad_destinatario, /* Ciudad Char(1 a 50) (SI)*/
+'Cliente_zipCode'        => $request->codigo_postal_destinatario, /*Código Postal Char(5) Decimal(5) (SI)*/
+'Cliente_state'          => $request->estado_destinatario, /* Estado Char(1 a 50) (SI)*/
+'Cliente_contactName'    => $request->contacto_destinatario /* Nombre de la persona de Contacto Char(1 a 30) (SI)*/,
+'Cliente_corporateName'  => $request->razon_social_destinatario, /* Razón social Char(1 a 50) (SI)*/
+'Cliente_customerNumber' => $request->numero_cliente_destinatario, /* Número de Cliente Estafeta. Puede tratarse del Número de Cliente origen o destino Char(7) (SI)*/
 
 'Cliente_address2'       => '35', /* Línea 2 de Dirección Char(1 a 30) (NO)*/
 'Cliente_cellPhone'      => '4444444', /* Número de celular de la persona de contacto Char(0 a 20) (NO)*/
@@ -110,21 +102,21 @@ $i = (Object) [
 
 
 
-
 //Objeto que contiene la información del quien envia
-'Tecno_address1'       => 'CALLE 5', /* Línea 1 de Dirección Char(1 a 30) (SI)*/
-'Tecno_city'           => '29', /* Ciudad Char(1 a 50) (SI)*/
-'Tecno_contactName'    => '888888' /* Nombre de la persona de Contacto Char(1 a 30) (SI)*/,
-'Tecno_corporateName'  => 'TLALPAN', /* Razón social Char(1 a 50) (SI)*/
-'Tecno_customerNumber' => 'JANET OIDOR', /* Número de Cliente Estafeta. Puede tratarse del Número de Cliente origen o destino Char(7) (SI)*/
-'Tecno_neighborhood'   => 'ALTAS SA DE CV', /* Colonia Char(1 a 50) (SI)*/
-'Tecno_state'          => '0000000', /* Estado Char(1 a 50) (SI)*/
-'Tecno_zipCode'        => '02300', /*Código Postal Char(5) Decimal(5) (SI)*/
+'Tecno_address1'       => env('TECNO_DIRECCION'), /* Línea 1 de Dirección Char(1 a 30) (SI)*/
+'Tecno_city'           => env('TECNO_CIUDAD'), /* Ciudad Char(1 a 50) (SI)*/
+'Tecno_contactName'    => env('TECNO_CONTACTO') /* Nombre de la persona de Contacto Char(1 a 30) (SI)*/,
+'Tecno_corporateName'  => env('TECNO_RAZON_SOCIAL'), /* Razón social Char(1 a 50) (SI)*/
+'Tecno_customerNumber' => env('TECNO_NUMERO_DE_CLIENTE'), /* Número de Cliente Estafeta. Puede tratarse del Número de Cliente origen o destino Char(7) (SI)*/
+'Tecno_neighborhood'   => env('TECNO_COLONIA'), /* Colonia Char(1 a 50) (SI)*/
+'Tecno_state'          => env('TECNO_ESTADO'), /* Estado Char(1 a 50) (SI)*/
+'Tecno_zipCode'        => env('TECNO_CODIGO_POSTAL'), /*Código Postal Char(5) Decimal(5) (SI)*/
 
-'Tecno_address2'       => 'CENTRO', /* Línea 2 de Dirección Char(1 a 30) (NO)*/
-'Tecno_cellPhone'      => '9999999', /* Número de celular de la persona de contacto Char(0 a 20) (NO)*/
-'Tecno_phoneNumber'    => 'DF', /* Teléfono Char(5 a 25) (NO)*/
+'Tecno_address2'       => env('TECNO_DIRECCION2'), /* Línea 2 de Dirección Char(1 a 30) (NO)*/
+'Tecno_cellPhone'      => env('TECNO_CELULAR'), /* Número de celular de la persona de contacto Char(0 a 20) (NO)*/
+'Tecno_phoneNumber'    => env('TECNO_TELEFONO'), /* Teléfono Char(5 a 25) (NO)*/
 'Tecno_valid'          => 'true',
+
 
 
 
@@ -177,15 +169,15 @@ $i = (Object) [
                                    <officeNum xsi:type="xsd:string">'.$i->officeNum.'</officeNum>
                                    <originInfo xsi:type="dto:OriginInfo">
                                       <address1 xsi:type="xsd:string">'.$i->Tecno_address1.'</address1>
-                                      <address2 xsi:type="xsd:string">'.$i->Tecno_city.'</address2>
-                                      <cellPhone xsi:type="xsd:string">'.$i->Tecno_contactName.'</cellPhone>
-                                      <city xsi:type="xsd:string">'.$i->Tecno_corporateName.'</city>
-                                      <contactName xsi:type="xsd:string">'.$i->Tecno_customerNumber.'</contactName>
-                                      <corporateName xsi:type="xsd:string">'.$i->Tecno_neighborhood.'</corporateName>
-                                      <customerNumber xsi:type="xsd:string">'.$i->Tecno_state.'</customerNumber>
-                                      <neighborhood xsi:type="xsd:string">'.$i->Tecno_address2.'</neighborhood>
-                                      <phoneNumber xsi:type="xsd:string">'.$i->Tecno_cellPhone.'</phoneNumber>
-                                      <state xsi:type="xsd:string">'.$i->Tecno_phoneNumber.'</state>
+                                      <address2 xsi:type="xsd:string">'.$i->Tecno_address2.'</address2>
+                                      <cellPhone xsi:type="xsd:string">'.$i->Tecno_cellPhone.'</cellPhone>
+                                      <city xsi:type="xsd:string">'.$i->Tecno_city.'</city>
+                                      <contactName xsi:type="xsd:string">'.$i->Tecno_contactName.'</contactName>
+                                      <corporateName xsi:type="xsd:string">'.$i->Tecno_corporateName.'</corporateName>
+                                      <customerNumber xsi:type="xsd:string">'.$i->Tecno_customerNumber.'</customerNumber>
+                                      <neighborhood xsi:type="xsd:string">'.$i->Tecno_neighborhood.'</neighborhood>
+                                      <phoneNumber xsi:type="xsd:string">'.$i->Tecno_phoneNumber.'</phoneNumber>
+                                      <state xsi:type="xsd:string">'.$i->Tecno_state.'</state>
                                       <valid xsi:type="xsd:boolean">'.$i->Tecno_valid.'</valid>
                                       <zipCode xsi:type="xsd:string">'.$i->Tecno_zipCode.'</zipCode>
                                    </originInfo>
@@ -246,6 +238,8 @@ $i = (Object) [
         }
 
         $xml_obj = self::xml_to_array($response, 1, 'resultDescription')['soapenv:Envelope']['soapenv:Body']['multiRef'];
+
+        //dd($xml_obj);
         $labelPDF = $xml_obj[0]['labelPDF']['value'];
 
         foreach ($xml_obj as $key => $i) {
@@ -259,6 +253,7 @@ $i = (Object) [
         $nombre_del_PDF = $numero_de_guia.".pdf";
 
         $pdf_decoded = base64_decode ($labelPDF);
+        //$pdf = fopen ('guiasPDF/'.$nombre_del_PDF,'w');
         $pdf = fopen ($nombre_del_PDF,'w');
         fwrite ($pdf,$pdf_decoded);
         fclose ($pdf);
@@ -266,6 +261,8 @@ $i = (Object) [
         header("Content-disposition: attachment; filename=".$nombre_del_PDF."");
         header("Content-type: MIME");
         readfile($nombre_del_PDF);
+
+        return $nombre_del_PDF;
 
     }
 
