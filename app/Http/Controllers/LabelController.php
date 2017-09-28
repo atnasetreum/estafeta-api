@@ -101,8 +101,8 @@ class LabelController extends Controller
              $this->validate($request, [ 'celular_destinatario'            => 'string|between:1,20']);
         }
 
-        $nombre_del_PDF = Estafeta::crear_guia($request);
-        session()->flash('archivo_pdf', $nombre_del_PDF);
+        $obj_info = Estafeta::crear_guia($request);
+        session()->flash('pdf_info', $obj_info);
         return view('label.index');
     }
 

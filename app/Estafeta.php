@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Label;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Estafeta extends Model
@@ -253,11 +255,19 @@ $request->celular_destinatario
         fwrite ($pdf,$pdf_decoded);
         fclose ($pdf);
 
+
+
+        $id             = Auth::id()."_view";
+        $label          = new Label();
+        $label->id_user = $id;
+        $label->guia    = $numero_de_guia;
+        $label->save();
+
         /*header("Content-disposition: attachment; filename=".$nombre_del_PDF."");
         header("Content-type: MIME");
         readfile($nombre_del_PDF);*/
 
-        return $nombre_del_PDF;
+        return (Object) ['numero_de_guia'=>$numero_de_guia, 'nombre_del_PDF'=>$nombre_del_PDF];
 
     }
 

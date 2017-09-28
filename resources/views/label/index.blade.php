@@ -6,13 +6,19 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Información API </div>
-
-                @if (session()->has('archivo_pdf'))
+                @php
+                    $link = false;
+                @endphp
+                @if (session()->has('pdf_info'))
                     <div class="alert alert-success">
-                        <a style="color:white;" href="guiasPDF/{{ session('archivo_pdf') }}" title="Descargar" target="_black">
+                        <a id="link_pdf" style="color:white;" href="guiasPDF/{{ session('pdf_info')->nombre_del_PDF }}" title="Descargar" target="_black">
                             <h3>Descargar Guía PDF (Click)</h3>
                         </a>
+                        <p>Ref. {{ session('pdf_info')->numero_de_guia }}</p>
                     </div>
+                    @php
+                        $link = true;
+                    @endphp
                 @endif
 
                 <div class="panel-body">
@@ -29,6 +35,17 @@
         </div>
     </div>
 </div>
+@endsection
 
-
+@section('content-js')
+    <script>
+        var $link = "<?php echo $link; ?>";
+        jQuery(document).ready(function($) {
+            if($link){
+                setTimeout(function () {
+                    window.open($('a#link_pdf').attr('href'));
+                }, 1000);
+            }
+        });
+    </script>
 @endsection
