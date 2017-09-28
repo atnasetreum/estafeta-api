@@ -59,19 +59,6 @@ $i = (Object) [
     3 - Plantilla Tamaño Oficio de 4 Etiquetas
     En esta modalidad la plantilla está dividida
     en 4 cuadrantes donde cada uno es una*/
-/*
-
-
-
-$request->telefono_destinatario
-$request->celular_destinatario
-*/
-/*
-
-
-
-
-*/
 
 
 'aditionalInfo'        => ($request->informacion_adicional_del_envio ?? '.'), /* Información adicional sobre el envío Char(1 a 25) (NO) */
@@ -80,7 +67,7 @@ $request->celular_destinatario
 'destinationCountryId' => ($request->pais_de_envio ?? '.'), /* País del envío, solo se requiere definir en caso de que el envío sea hacia el extranjero (EU -Estados Unidos) (NO)*/
 'reference'            => ($request->referencia ?? '.'), /* Texto que sirve como referencia adicional para que Estafeta ubique mas fácilmente el domicilio destino Char(1 a 25) (NO)*/
 'returnDocument'       => 'false', /* Campo que indica si el envío requiere la impresión de una guía adicional para el manejo de documento de retorno (NO)*/
-'quadrant'             => 0, /* Cuadrante de inicio de impresión de guías. 1-4 – impresora láser. Solo aplica cuando paperType sea 3. (1,2,3,4)*/
+'quadrant'             => ($request->cuadrante_de_impresion ?? '0'), /* Cuadrante de inicio de impresión de guías. 1-4 – impresora láser. Solo aplica cuando paperType sea 3. (1,2,3,4)*/
 
 
 //  Persona a quien va dirigido el envio

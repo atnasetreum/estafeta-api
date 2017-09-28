@@ -21,6 +21,7 @@ class LabelController extends Controller
         //
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -40,6 +41,7 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
 
         $reglas =   [
                         'contenido_del_envio'             => 'required|min:1|max:25|alpha_dash',
@@ -103,7 +105,10 @@ class LabelController extends Controller
 
         $obj_info = Estafeta::crear_guia($request);
         session()->flash('pdf_info', $obj_info);
-        return view('label.index');
+
+        $labels = $this->labels_all();
+
+        return view('label.index', compact('labels'));
     }
 
     /**

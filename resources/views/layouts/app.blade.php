@@ -40,7 +40,6 @@
                     @guest
                     @else
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ route('label.index') }}">Consultar Guías Generadas</a></li>
                             <li><a href="{{ route('label.create') }}">Crear Guía</a></li>
                         </ul>
                     @endguest

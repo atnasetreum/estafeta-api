@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Label;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('label.index');
+        $labels = $this->labels_all();
+        return view('label.index', compact('labels'));
     }
 }

@@ -20,7 +20,10 @@ Contiene:
 
 - API creada: Registro de base de datos para las guias generadas.
 - API creada: Login, registro, recuperacion de contraseña, para el logeo de usuarios.
-- API creada: Tabla de Estados con Coordenadas.
-- Formulario para la creación de Guia.
+- API creada: Base de Datos (eloquent) .
+- API creada: Paginación de Resultados.
+<p align="center"><img src="public/img/paginate.png" width="20%"></p>
+- API creada: Formulario para la creación de Guia.
+
 
 
