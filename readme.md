@@ -26,6 +26,5 @@ Contiene:
 - API creada: Formulario para la creación de Guia.
 <p align="center"><img src="public/img/form.png" width="40%"></p>
 - API creada: Reglas de validación, (Validate).
-
 - API creada: Impresion de Labels en formato PDF.
 <p align="center"><img src="public/img/labels.png" width="40%"></p>

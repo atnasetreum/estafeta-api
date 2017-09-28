@@ -7,6 +7,7 @@ use App\State;
 use App\Estafeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class LabelController extends Controller
 {
@@ -41,7 +42,6 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
 
         $reglas =   [
                         'contenido_del_envio'             => 'required|min:1|max:25|alpha_dash',
@@ -65,42 +65,104 @@ class LabelController extends Controller
 
                     ];
 
-        $this->validate($request, $reglas);
+        // cuando no es una peticion por la vista, para el manejo de la API
+        if(!$this->es_web($request)){
+            $validaciones = Validator::make($request->all(), $reglas);
+            if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+        }else{
+            $this->validate($request, $reglas);
+        }
+
+
 
         if (!empty($request->input('informacion_adicional_del_envio'))){
-             $this->validate($request, [ 'informacion_adicional_del_envio' => 'regex:/^[\pL\s\.\-]+$/u|between:1,25' ]);
+            $reglas = ['informacion_adicional_del_envio'=>'regex:/^[\pL\s\.\-]+$/u|between:1,25'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('descripcion_del_contenido'))){
-             $this->validate($request, [ 'descripcion_del_contenido'       => 'regex:/^[\pL\s\.\-]+$/u|between:1,100']);
+            $reglas = ['descripcion_del_contenido'=>'regex:/^[\pL\s\.\-]+$/u|between:1,100'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('centro_de_costos'))){
-             $this->validate($request, [ 'centro_de_costos'                => 'string|between:1,10']);
+            $reglas = ['centro_de_costos'=>'string|between:1,10'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('pais_de_envio'))){
-             $this->validate($request, [ 'pais_de_envio'                   => 'regex:/^[\pL\s\.\-]+$/u|between:2,2']);
+            $reglas = ['pais_de_envio'=>'regex:/^[\pL\s\.\-]+$/u|between:2,2'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('referencia'))){
-             $this->validate($request, [ 'referencia'                      => 'regex:/^[\pL\s\.\-]+$/u|between:1,25']);
+            $reglas = ['referencia'=>'regex:/^[\pL\s\.\-]+$/u|between:1,25'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('cuadrante_de_impresion'))){
-             $this->validate($request, [ 'cuadrante_de_impresion'          => 'required_if:tipo_de_papel,==,3']);
+            $reglas = ['cuadrante_de_impresion'=>'required_if:tipo_de_papel,==,3'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('direccion2_destinatario'))){
-             $this->validate($request, [ 'direccion2_destinatario'         => 'regex:/^[\pL\s\.\-]+$/u|between:1,30']);
+            $reglas = ['direccion2_destinatario'=>'regex:/^[\pL\s\.\-]+$/u|between:1,30'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('telefono_destinatario'))){
-             $this->validate($request, [ 'telefono_destinatario'           => 'string|between:1,30']);
+            $reglas = [ 'telefono_destinatario'           => 'string|between:1,30'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         if (!empty($request->input('celular_destinatario'))){
-             $this->validate($request, [ 'celular_destinatario'            => 'string|between:1,20']);
+            $reglas = [ 'celular_destinatario'            => 'string|between:1,20'];
+            if(!$this->es_web($request)){
+                $validaciones = Validator::make($request->all(), $reglas);
+                if ($validaciones->fails()) { return response()->json(['data'=>$validaciones->errors()], 400 ); }
+            }else{
+                $this->validate($request, $reglas);
+            }
         }
 
         $obj_info = Estafeta::crear_guia($request);
