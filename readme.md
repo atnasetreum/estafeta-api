@@ -24,6 +24,6 @@ Contiene:
 - API creada: Paginación de Resultados.
 <p align="center"><img src="public/img/paginate.png" width="100%"></p>
 - API creada: Formulario para la creación de Guia.
-
+<p align="center"><img src="public/img/form.png" width="100%"></p>
 
 
