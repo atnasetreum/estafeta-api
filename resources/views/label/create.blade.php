@@ -24,7 +24,7 @@
 
                     <p style="color:red;font-size: 12px;">Campos Requeridos *</p>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('contenido_del_envio')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Contenido del Envío <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -39,7 +39,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('forma_de_entrega')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Forma de entrega <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <select name="forma_de_entrega" class="form-control" required>
@@ -49,7 +49,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('numero_de_etiquetas')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">No. de Etiquetas <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -65,7 +65,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('numero_de_oficina')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">No. de Oficina Estafeta <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -81,7 +81,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('codigo_postal_destino')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Código Postal Destino <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -97,7 +97,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('tipo_de_envio')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Tipo de envío <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <select name="tipo_de_envio" class="form-control" required>
@@ -108,7 +108,7 @@
                       </div>
 
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('tipo_de_servicio')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Tipo de Servicio <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -125,7 +125,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('peso_del_envio')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Peso del envío <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -138,7 +138,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('tipo_de_papel')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Tipo de papel para impresión de la guía <z style="color:red;">*</z></label>
                         <label class="radio-inline">
                           <input type="radio" name="tipo_de_papel" title="En esta modalidad la cara de la hoja es dividida en 2 secciones, en una de ellas se imprime la guía y en la otra se imprime el contrato de la guía. Requiere impresora Láser." checked value="1" @if(old('tipo_de_papel')) checked @endif> Papel Bond Tamaño Carta
@@ -155,7 +155,7 @@
                         <p>Información Adicional</p>
                       <hr>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('cuadrante_de_impresion')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Cuadrante de inicio de impresión de guías</label>
                         <label style="color:#FF6400">Solo aplica cuando Tipo de papel para impresión de la guía sea "Plantilla Tamaño Oficio de 4 Etiquetas"</label><br>
                         <label class="radio-inline">
@@ -172,7 +172,7 @@
                         </label>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('informacion_adicional_del_envio')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Información adicional del Envío</label>
                         <div class="col-sm-10">
                           <input
@@ -186,7 +186,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('descripcion_del_contenido')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Descripcion del contenido</label>
                         <div class="col-sm-10">
                           <input
@@ -200,7 +200,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('centro_de_costos')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Centro de Costos</label>
                         <div class="col-sm-10">
                           <input
@@ -214,7 +214,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('pais_de_envio')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Pais de Envío</label>
                         <div class="col-sm-10">
                           <select name="pais_de_envio" class="form-control">
@@ -224,7 +224,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('referencia')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Referencia</label>
                         <div class="col-sm-10">
                           <input
@@ -242,7 +242,7 @@
                         <p>Destinatario</p> <p style="color:red;font-size: 12px;">Campos Requeridos *</p>
                       <hr>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('direccion_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Linea 1 de Dirección <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -256,7 +256,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('colonia_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Colonia <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -270,7 +270,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('ciudad_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Ciudad <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -285,7 +285,7 @@
                       </div>
 
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('codigo_postal_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Código Postal Destino <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -300,7 +300,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('estado_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Estado <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <select name="estado_destinatario" class="form-control" required>
@@ -312,9 +312,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group {{ @if(
-                                                        count($errors->get('contenido_del_envio')) > 0
-                                                    ) "has-error" @endif }}">
+                      <div class="form-group @if(count($errors->get('contacto_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Nombre del Contacto <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -328,7 +326,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('razon_social_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Razón Social <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -342,7 +340,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('numero_cliente_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">No. de Cliente Estafeta <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -359,7 +357,7 @@
                       </div>
 
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('direccion2_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Linea 2 de Dirección</label>
                         <div class="col-sm-10">
                           <input
@@ -373,7 +371,7 @@
                       </div>
 
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('telefono_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Teléfono de Contacto</label>
                         <div class="col-sm-10">
                           <input
@@ -386,7 +384,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group @if(count($errors->get('celular_destinatario')) > 0) {{ 'has-error' }} @endif">
                         <label class="col-sm-2 control-label">Celular de Contacto</label>
                         <div class="col-sm-10">
                           <input

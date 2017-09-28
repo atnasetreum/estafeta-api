@@ -49,16 +49,16 @@ class LabelController extends Controller
                         'codigo_postal_destino'           => 'required|digits_between:5,5|numeric',
                         'tipo_de_envio'                   => 'required|digits_between:1,4|numeric',
                         'tipo_de_servicio'                => 'required|digits_between:2,2|numeric',
-                        'peso_del_envio'                  => 'required|numeric|min:0.5|max:99.00',
+                        'peso_del_envio'                  => 'required|between:0.5,99.00',
                         'tipo_de_papel'                   => 'required|numeric|min:1|max:3',
 
                         'direccion_destinatario'          => 'required|min:1|max:30|alpha_dash',
-                        'colonia_destinatario'            => 'required|regex:/^[\pL\s\-]+$/u|between:1,50',
+                        'colonia_destinatario'            => 'required|regex:/^[\pL\s\.\-]+$/u|between:1,50',
                         'ciudad_destinatario'             => 'required|min:1|max:50|alpha_dash',
                         'codigo_postal_destinatario'      => 'required|digits_between:5,5|numeric',
-                        'estado_destinatario'             => 'required|regex:/^[\pL\s\-]+$/u',
-                        'contacto_destinatario'           => 'required|alpha|min:1|max:30',
-                        'razon_social_destinatario'       => 'required|regex:/^[\pL\s\-]+$/u|between:1,50',
+                        'estado_destinatario'             => 'required|regex:/^[\pL\s\.\-]+$/u',
+                        'contacto_destinatario'           => 'required|regex:/^[\pL\s\.\-]+$/u|min:1|max:30',
+                        'razon_social_destinatario'       => 'required|regex:/^[\pL\s\.\-]+$/u|between:1,50',
                         'numero_cliente_destinatario'     => 'required|digits_between:7,7|numeric',
 
                     ];
@@ -66,23 +66,23 @@ class LabelController extends Controller
         $this->validate($request, $reglas);
 
         if (!empty($request->input('informacion_adicional_del_envio'))){
-             $this->validate($request, [ 'informacion_adicional_del_envio' => 'regex:/^[\pL\s\-]+$/u|between:1,25' ]);
+             $this->validate($request, [ 'informacion_adicional_del_envio' => 'regex:/^[\pL\s\.\-]+$/u|between:1,25' ]);
         }
 
         if (!empty($request->input('descripcion_del_contenido'))){
-             $this->validate($request, [ 'descripcion_del_contenido'       => 'regex:/^[\pL\s\-]+$/u|between:1,100']);
+             $this->validate($request, [ 'descripcion_del_contenido'       => 'regex:/^[\pL\s\.\-]+$/u|between:1,100']);
         }
 
         if (!empty($request->input('centro_de_costos'))){
-             $this->validate($request, [ 'centro_de_costos'                => 'regex:/^[\pL\s\-]+$/u|between:1,10']);
+             $this->validate($request, [ 'centro_de_costos'                => 'string|between:1,10']);
         }
 
         if (!empty($request->input('pais_de_envio'))){
-             $this->validate($request, [ 'pais_de_envio'                   => 'regex:/^[\pL\s\-]+$/u|between:2,2']);
+             $this->validate($request, [ 'pais_de_envio'                   => 'regex:/^[\pL\s\.\-]+$/u|between:2,2']);
         }
 
         if (!empty($request->input('referencia'))){
-             $this->validate($request, [ 'referencia'                      => 'regex:/^[\pL\s\-]+$/u|between:1,25']);
+             $this->validate($request, [ 'referencia'                      => 'regex:/^[\pL\s\.\-]+$/u|between:1,25']);
         }
 
         if (!empty($request->input('cuadrante_de_impresion'))){
@@ -90,15 +90,15 @@ class LabelController extends Controller
         }
 
         if (!empty($request->input('direccion2_destinatario'))){
-             $this->validate($request, [ 'direccion2_destinatario'         => 'regex:/^[\pL\s\-]+$/u|between:1,30']);
+             $this->validate($request, [ 'direccion2_destinatario'         => 'regex:/^[\pL\s\.\-]+$/u|between:1,30']);
         }
 
         if (!empty($request->input('telefono_destinatario'))){
-             $this->validate($request, [ 'telefono_destinatario'           => 'regex:/^[\pL\s\-]+$/u|between:1,30']);
+             $this->validate($request, [ 'telefono_destinatario'           => 'string|between:1,30']);
         }
 
         if (!empty($request->input('celular_destinatario'))){
-             $this->validate($request, [ 'celular_destinatario'            => 'regex:/^[\pL\s\-]+$/u|between:1,20']);
+             $this->validate($request, [ 'celular_destinatario'            => 'string|between:1,20']);
         }
 
         $nombre_del_PDF = Estafeta::crear_guia($request);

@@ -235,7 +235,6 @@ $request->celular_destinatario
 
         $xml_obj = self::xml_to_array($response, 1, 'resultDescription')['soapenv:Envelope']['soapenv:Body']['multiRef'];
 
-        //dd($xml_obj);
         $labelPDF = $xml_obj[0]['labelPDF']['value'];
 
         foreach ($xml_obj as $key => $i) {
@@ -249,8 +248,8 @@ $request->celular_destinatario
         $nombre_del_PDF = $numero_de_guia.".pdf";
 
         $pdf_decoded = base64_decode ($labelPDF);
-        //$pdf = fopen ('guiasPDF/'.$nombre_del_PDF,'w');
-        $pdf = fopen ($nombre_del_PDF,'w');
+        $pdf = fopen ('guiasPDF/'.$nombre_del_PDF,'w');
+        //$pdf = fopen ($nombre_del_PDF,'w');
         fwrite ($pdf,$pdf_decoded);
         fclose ($pdf);
 
