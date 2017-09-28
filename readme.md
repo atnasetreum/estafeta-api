@@ -22,10 +22,10 @@ Contiene:
 - API creada: Login, registro, recuperacion de contraseña, para el logeo de usuarios (Authentication - Laravel).
 - API creada: Gestion de Base de Datos (eloquent) .
 - API creada: Vista y Paginación de Resultados.
-<p align="center"><img src="public/img/paginate.png" width="100%"></p>
+<p align="center"><img src="public/img/paginate.png" width="40%"></p>
 - API creada: Formulario para la creación de Guia.
-<p align="center"><img src="public/img/form.png" width="100%"></p>
+<p align="center"><img src="public/img/form.png" width="40%"></p>
 - API creada: Reglas de validación, (Validate).
 
 - API creada: Impresion de Labels en formato PDF.
-<p align="center"><img src="public/img/labels.png" width="50%"></p>
+<p align="center"><img src="public/img/labels.png" width="40%"></p>
