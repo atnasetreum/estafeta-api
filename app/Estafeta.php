@@ -25,7 +25,7 @@ class Estafeta extends Model
               <zipCode xsi:type="xsd:string">'.$i->Alter_zipCode.'</zipCode>
            </DRAlternativeInfo>*/
 
-//dd();
+//dd($request);
 $i = (Object) [
 
 'content'                  => $request->contenido_del_envio, /* Contenido del envío Char(1 a 25) (SI) */
@@ -59,28 +59,24 @@ $i = (Object) [
     en 4 cuadrantes donde cada uno es una*/
 /*
 
-$request->descripcion_del_contenido
-$request->centro_de_costos
-$request->pais_de_envio
-$request->referencia
 
 
 $request->telefono_destinatario
 $request->celular_destinatario
 */
-/*($request->descripcion_del_contenido ?? '.')
-($request->centro_de_costos ?? '.')
-($request->pais_de_envio ?? '.')
-($request->referencia ?? '.')
-($request->informacion_adicional_del_envio ?? '.')
-($request->informacion_adicional_del_envio ?? '.')*/
+/*
+
+
+
+
+*/
 
 
 'aditionalInfo'        => ($request->informacion_adicional_del_envio ?? '.'), /* Información adicional sobre el envío Char(1 a 25) (NO) */
-'contentDescription'   => 'ORO',        /* Descripcion del contenido del envío Char(100) (NO) */
-'costCenter'           => '12345',      /* Centro de Costos del cliente al que pertenece el envío Char(1 a 10) (NO) */
-'destinationCountryId' => 'MX', /* País del envío, solo se requiere definir en caso de que el envío sea hacia el extranjero (EU -Estados Unidos) (NO)*/
-'reference'            => 'FRENTE AL SANBORNS', /* Texto que sirve como referencia adicional para que Estafeta ubique mas fácilmente el domicilio destino Char(1 a 25) (NO)*/
+'contentDescription'   => ($request->descripcion_del_contenido ?? '.'),        /* Descripcion del contenido del envío Char(100) (NO) */
+'costCenter'           => ($request->centro_de_costos ?? '1'),      /* Centro de Costos del cliente al que pertenece el envío Char(1 a 10) (NO) */
+'destinationCountryId' => ($request->pais_de_envio ?? '.'), /* País del envío, solo se requiere definir en caso de que el envío sea hacia el extranjero (EU -Estados Unidos) (NO)*/
+'reference'            => ($request->referencia ?? '.'), /* Texto que sirve como referencia adicional para que Estafeta ubique mas fácilmente el domicilio destino Char(1 a 25) (NO)*/
 'returnDocument'       => 'false', /* Campo que indica si el envío requiere la impresión de una guía adicional para el manejo de documento de retorno (NO)*/
 'quadrant'             => 0, /* Cuadrante de inicio de impresión de guías. 1-4 – impresora láser. Solo aplica cuando paperType sea 3. (1,2,3,4)*/
 
@@ -96,8 +92,8 @@ $request->celular_destinatario
 'Cliente_customerNumber' => $request->numero_cliente_destinatario, /* Número de Cliente Estafeta. Puede tratarse del Número de Cliente origen o destino Char(7) (SI)*/
 
 'Cliente_address2'       => '35', /* Línea 2 de Dirección Char(1 a 30) (NO)*/
-'Cliente_cellPhone'      => '4444444', /* Número de celular de la persona de contacto Char(0 a 20) (NO)*/
-'Cliente_phoneNumber'    => '777777', /* Teléfono Char(5 a 25) (NO)*/
+'Cliente_cellPhone'      => ($request->celular_destinatario ?? '.'), /* Número de celular de la persona de contacto Char(0 a 20) (NO)*/
+'Cliente_phoneNumber'    => ($request->telefono_destinatario ?? '.'), /* Teléfono Char(5 a 25) (NO)*/
 'Cliente_valid'          => 'true',
 
 
@@ -258,9 +254,9 @@ $request->celular_destinatario
         fwrite ($pdf,$pdf_decoded);
         fclose ($pdf);
 
-        header("Content-disposition: attachment; filename=".$nombre_del_PDF."");
+        /*header("Content-disposition: attachment; filename=".$nombre_del_PDF."");
         header("Content-type: MIME");
-        readfile($nombre_del_PDF);
+        readfile($nombre_del_PDF);*/
 
         return $nombre_del_PDF;
 

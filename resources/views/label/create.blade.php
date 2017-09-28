@@ -34,7 +34,7 @@
                                 minlength ="1"
                                 maxlength ="25"
                                 title     ="Contenido del envío, maximo 25 caracteres."
-                                value     ="{{ old('contenido_del_envio') }}"
+                                value     ="{{old('contenido_del_envio', 'Libros') }}"
                                 required >
                         </div>
                       </div>
@@ -59,7 +59,7 @@
                                 min        = "1"
                                 onkeypress ='return event.charCode >= 48 && event.charCode <= 57'
                                 max        ="70"
-                                value      ="{{ old('numero_de_etiquetas') }}"
+                                value      ="{{ old('numero_de_etiquetas', 1) }}"
                                 title      ="Número de etiquetas que se desean imprimir con el tipo de servicio."
                                 required >
                         </div>
@@ -91,7 +91,7 @@
                                 onkeypress ='return event.charCode >= 48 && event.charCode <= 57'
                                 minlength  ="5"
                                 maxlength  ="5"
-                                value      ="{{ old('codigo_postal_destino') }}"
+                                value      ="{{ old('codigo_postal_destino', '54930') }}"
                                 title      = "Código postal del domicilio destino del envío."
                                 required >
                         </div>
@@ -132,7 +132,7 @@
                                 type      ="number"
                                 class     ="form-control"
                                 name      ="peso_del_envio"
-                                value     ="{{ old('peso_del_envio') }}"
+                                value     ="{{ old('peso_del_envio', 34.2) }}"
                                 title     ="Peso del envío  (0.5 a 99.00)"
                                 required >
                         </div>
@@ -182,7 +182,7 @@
                                 minlength ="1"
                                 maxlength ="25"
                                 title     ="Información adicional del Envío, maximo 25 caracteres."
-                                value     ="{{ old('informacion_adicional_del_envio') }}"  >
+                                value     ="{{ old('informacion_adicional_del_envio', 'Para Escuela Primaria') }}"  >
                         </div>
                       </div>
 
@@ -196,7 +196,7 @@
                                 minlength ="1"
                                 maxlength ="100"
                                 title     ="Descripcion del contenido, maximo 100 caracteres."
-                                value     ="{{ old('descripcion_del_contenido') }}"  >
+                                value     ="{{ old('descripcion_del_contenido', 'Cuadernos Scribe') }}"  >
                         </div>
                       </div>
 
@@ -210,7 +210,7 @@
                                 minlength ="1"
                                 maxlength ="10"
                                 title     ="Centro de Costos del cliente al que pertenece el envío, maximo 10 caracteres."
-                                value     ="{{ old('centro_de_costos') }}"  >
+                                value     ="{{ old('centro_de_costos', '12345') }}"  >
                         </div>
                       </div>
 
@@ -234,7 +234,7 @@
                                 minlength ="1"
                                 maxlength ="25"
                                 title     ="Texto que sirve como referencia adicional para que Estafeta ubique mas fácilmente el domicilio destino."
-                                value     ="{{ old('referencia') }}"  >
+                                value     ="{{ old('referencia', 'Fachada color azul') }}"  >
                         </div>
                       </div>
 
@@ -251,7 +251,7 @@
                                 name      ="direccion_destinatario"
                                 minlength ="1"
                                 maxlength ="30"
-                                value     ="{{ old('direccion_destinatario') }}"
+                                value     ="{{ old('direccion_destinatario', 'Pensamiento') }}"
                                 required >
                         </div>
                       </div>
@@ -265,7 +265,7 @@
                                 name      ="colonia_destinatario"
                                 minlength ="1"
                                 maxlength ="50"
-                                value     ="{{ old('colonia_destinatario') }}"
+                                value     ="{{ old('colonia_destinatario', 'Granjas San Pablo') }}"
                                 required >
                         </div>
                       </div>
@@ -279,7 +279,7 @@
                                 name      ="ciudad_destinatario"
                                 minlength ="1"
                                 maxlength ="50"
-                                value     ="{{ old('ciudad_destinatario') }}"
+                                value     ="{{ old('ciudad_destinatario', 'Tultitlan') }}"
                                 required >
                         </div>
                       </div>
@@ -295,7 +295,7 @@
                                 onkeypress ='return event.charCode >= 48 && event.charCode <= 57'
                                 minlength  ="5"
                                 maxlength  ="5"
-                                value      ="{{ old('codigo_postal_destinatario') }}"
+                                value      ="{{ old('codigo_postal_destinatario', '54930') }}"
                                 required >
                         </div>
                       </div>
@@ -306,13 +306,15 @@
                           <select name="estado_destinatario" class="form-control" required>
                                 <option value="">Seleccione ...</option>
                               @foreach($states AS $state)
-                                <option value="{{ $state->description }}" {{ (old("estado_destinatario") == $state->description ? "selected":"") }}>{{ $state->description }}</option>
+                                <option value="{{ $state->description }}" {{ (old("estado_destinatario", "Estado de México") == $state->description ? "selected":"") }}>{{ $state->description }}</option>
                               @endforeach
                           </select>
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group {{ @if(
+                                                        count($errors->get('contenido_del_envio')) > 0
+                                                    ) "has-error" @endif }}">
                         <label class="col-sm-2 control-label">Nombre del Contacto <z style="color:red;">*</z></label>
                         <div class="col-sm-10">
                           <input
@@ -321,7 +323,7 @@
                                 name      ="contacto_destinatario"
                                 minlength ="1"
                                 maxlength ="30"
-                                value     ="{{ old('contacto_destinatario') }}"
+                                value     ="{{ old('contacto_destinatario', 'Eduardo Garcia') }}"
                                 required >
                         </div>
                       </div>
@@ -335,7 +337,7 @@
                                 name      ="razon_social_destinatario"
                                 minlength ="1"
                                 maxlength ="50"
-                                value     ="{{ old('razon_social_destinatario') }}"
+                                value     ="{{ old('razon_social_destinatario', 'Tecnosinergia S.A. de C.V.') }}"
                                 required >
                         </div>
                       </div>
@@ -366,7 +368,7 @@
                                 name      ="direccion2_destinatario"
                                 minlength ="1"
                                 maxlength ="30"
-                                value     ="{{ old('direccion2_destinatario') }}">
+                                value     ="{{ old('direccion2_destinatario', 'San Pablo') }}">
                         </div>
                       </div>
 
@@ -380,7 +382,7 @@
                                 name      ="telefono_destinatario"
                                 minlength ="1"
                                 maxlength ="30"
-                                value     ="{{ old('telefono_destinatario') }}">
+                                value     ="{{ old('telefono_destinatario', '58987270 ext 130') }}">
                         </div>
                       </div>
 
@@ -393,7 +395,7 @@
                                 name      ="celular_destinatario"
                                 minlength ="1"
                                 maxlength ="20"
-                                value     ="{{ old('celular_destinatario') }}">
+                                value     ="{{ old('celular_destinatario', '55 43554411') }}">
                         </div>
                       </div>
 
