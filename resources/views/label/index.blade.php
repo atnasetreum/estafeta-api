@@ -30,6 +30,7 @@
                                     <th>ID USUARIO</th>
                                     <th>NÚMERO DE GUÍA</th>
                                     <th>CREACIÓN</th>
+                                    <th>PDF</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,6 +43,7 @@
                                         $creacion = date('d-m-Y H:m:i', strtotime($label->created_at));
                                     @endphp
                                     <td>{{ $creacion }}</td>
+                                    <td><a href="guiasPDF/{{ $label->guia }}.pdf" target="_black" title="">Descargar</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

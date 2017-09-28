@@ -14,6 +14,6 @@ class Controller extends BaseController
 
     public function labels_all()
     {
-        return Label::paginate(10);
+        return Label::orderBy('id', 'desc')->paginate(10);
     }
 }
