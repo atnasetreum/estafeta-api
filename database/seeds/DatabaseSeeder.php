@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         /*Label::truncate();
         factory(Label::class, 5)->create();*/
-        User::create(['name'=>'Tecnosinergia', 'email'=>'tecnosinergia@tecnosinergia.com', 'password'=>'$2y$10$QJT5Ah6e13lmorvaFcA2F.UXGDnhP4Ms3EOHf53IwzpGfRdoj8/EO']);
+        User::create(['name'=>'Tecnosinergia', 'email'=>'tecnosinergia@tecnosinergia.com', 'password'=> '$2y$10$Yv0.UVC9x34L10uzzfeVW.DSvHqV2XFZS.HqgzEnYA3LiUEKjkt7S']);
         State::create(['description'=> 'Aguascalientes', 'longitude'=>'21.8852562', 'latitude'=>'-102.29156769999997']);
         State::create(['description'=> 'Baja California', 'longitude'=>'30.8406338', 'latitude'=>'-115.28375849999998']);
         State::create(['description'=> 'Baja California Sur', 'longitude'=>'26.0444446', 'latitude'=>'-111.66607249999998']);

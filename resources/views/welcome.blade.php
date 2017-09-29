@@ -10,10 +10,21 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+
+        <style>
+            .card-1 {
+              box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+              transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            }
+
+            .card-1:hover {
+              box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+        </style>
 
     </head>
-    <body>
+    <body style="background: #E1E1E1">
         <div class="container-fluid">
             <div class="row">
                 <nav class="navbar navbar-inverse">
@@ -34,7 +45,7 @@
                       <ul class="nav navbar-nav navbar-right">
                         @if (Route::has('login'))
                             @auth
-                                <li><a href="{{ url('/home') }}">INICIO</a></li>
+                                <li><a href="{{ url('/home') }}">ENTRAR</a></li>
                             @else
                                 <li><a href="{{ route('login') }}">INICIAR SESIÓN</a></li>
                                 <li><a href="{{ route('register') }}">REGISTRO</a></li>
@@ -48,11 +59,11 @@
         </div>
 
 
-        <div class="container" style="margin-top: 10%;">
+        <div class="container" style="margin-top: 10%; ">
             <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <center>
-                                <img src="img/estafeta_logo.png" class="img-responsive img-thumbnail" alt="">
+                                <img src="img/estafeta_logo.png" class="img-responsive img-thumbnail card-1" alt="">
                             </center>
                     </div>
             </div>

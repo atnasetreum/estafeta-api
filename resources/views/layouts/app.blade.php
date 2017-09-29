@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
 </head>
 <body>
 
@@ -40,6 +40,7 @@
                     @guest
                     @else
                         <ul class="nav navbar-nav">
+                            <li><a href="{{ route('home') }}">Tablas de Guias</a></li>
                             <li><a href="{{ route('label.create') }}">Crear Guía</a></li>
                         </ul>
                     @endguest

@@ -21,6 +21,7 @@ Contiene:
 - API creada: Registro de base de datos para las guias generadas.
 - API creada: Login, registro, recuperacion de contraseña, para el logeo de usuarios (Authentication - Laravel).
 - API creada: Gestion de Base de Datos (eloquent) .
+- API creada: Migraciones, Factories y seeds para pruebas .
 - API creada: Vista y Paginación de Resultados.
 <p align="center"><img src="public/img/paginate.png" width="40%"></p>
 - API creada: Formulario para la creación de Guia.
@@ -28,3 +29,5 @@ Contiene:
 - API creada: Reglas de validación, (Validate).
 - API creada: Impresion de Labels en formato PDF.
 <p align="center"><img src="public/img/labels.png" width="40%"></p>
+- API creada: Manejo de API con respuetas y validaciones especiales, en formato JSON con el código http correspondiente. (Se recomienda utilizar POSTMAN)
+<p align="center"><img src="public/img/api_response.png" width="40%"></p>

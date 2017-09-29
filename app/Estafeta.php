@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Label;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class Estafeta extends Model
 
     public static function crear_guia($request)
     {
+
         $request = (Object) $request->all();
         /*<DRAlternativeInfo xsi:type="dto:DRAlternativeInfo">
               <address1 xsi:type="xsd:string">'.$i->Alter_address1.'</address1>
@@ -64,7 +66,7 @@ $i = (Object) [
 'aditionalInfo'        => ($request->informacion_adicional_del_envio ?? '.'), /* Información adicional sobre el envío Char(1 a 25) (NO) */
 'contentDescription'   => ($request->descripcion_del_contenido ?? '.'),        /* Descripcion del contenido del envío Char(100) (NO) */
 'costCenter'           => ($request->centro_de_costos ?? '1'),      /* Centro de Costos del cliente al que pertenece el envío Char(1 a 10) (NO) */
-'destinationCountryId' => ($request->pais_de_envio ?? '.'), /* País del envío, solo se requiere definir en caso de que el envío sea hacia el extranjero (EU -Estados Unidos) (NO)*/
+'destinationCountryId' => ($request->pais_de_envio ?? 'MX'), /* País del envío, solo se requiere definir en caso de que el envío sea hacia el extranjero (EU -Estados Unidos) (NO)*/
 'reference'            => ($request->referencia ?? '.'), /* Texto que sirve como referencia adicional para que Estafeta ubique mas fácilmente el domicilio destino Char(1 a 25) (NO)*/
 'returnDocument'       => 'false', /* Campo que indica si el envío requiere la impresión de una guía adicional para el manejo de documento de retorno (NO)*/
 'quadrant'             => ($request->cuadrante_de_impresion ?? '0'), /* Cuadrante de inicio de impresión de guías. 1-4 – impresora láser. Solo aplica cuando paperType sea 3. (1,2,3,4)*/
@@ -221,7 +223,7 @@ $i = (Object) [
                 echo "\t", $error->message;
             }
         }
-
+        //dd($response);
         $xml_obj = self::xml_to_array($response, 1, 'resultDescription')['soapenv:Envelope']['soapenv:Body']['multiRef'];
 
         $labelPDF = $xml_obj[0]['labelPDF']['value'];
@@ -244,11 +246,20 @@ $i = (Object) [
 
 
 
-        $id             = Auth::id()."_view";
+
+
+        $contoller = new Controller();
+        if(!$contoller->es_web(request())){
+          $id = $request->id_usuario;
+        }else{
+          $id = Auth::id()."_view";
+        }
+
         $label          = new Label();
         $label->id_user = $id;
         $label->guia    = $numero_de_guia;
         $label->save();
+
 
         /*header("Content-disposition: attachment; filename=".$nombre_del_PDF."");
         header("Content-type: MIME");

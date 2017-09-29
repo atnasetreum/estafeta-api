@@ -405,7 +405,7 @@
 
                       <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-primary">Generar Guía</button>
+                          <button type="submit" class="btn btn-primary btn-block">Generar Guía</button>
                         </div>
                       </div>
                     </form>
